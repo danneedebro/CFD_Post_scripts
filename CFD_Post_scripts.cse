@@ -50,3 +50,26 @@
     END
 !   }
 !}
+
+
+
+
+!sub setCamera1 {
+# Action: Sets the camera using option Pivot and Rotation
+#
+# Args: 
+#        1 (string) = View object name
+#        2 (string list) = Pivot point
+#        3 (string list) = Rotation
+#        4 (int) = Scale (optional)
+#        5 (string list) = Pan (optional)
+VIEW:$_[0]
+   CAMERA:
+      Option = Pivot Point and Rotation
+      Pivot Point = $_[1]
+      Rotation = $_[2]
+      Scale = $_[3]
+      Pan = $_[4]
+   END
+END
+!}
