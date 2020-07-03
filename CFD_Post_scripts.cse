@@ -20,3 +20,33 @@
 !   }
 !   print " "x(3*($indent_level)) . "END\n";
 !}
+
+
+
+!sub setParameters {
+# Action: Sets a parameter
+#
+# Args:
+#         1 (string) = object
+#         2 (string) = parameter
+#         3  = value
+!   $obj_type = uc(getType("$_[0]"));
+!   $obj_name = getObjectName("$_[0]");
+!
+#   Set Parameters
+!   if ($obj_type eq 'VIEW') {
+    VIEW: $obj_name
+       $_[1] = $_[2]
+    END
+!   } elsif ($obj_type eq 'CAMERA') {
+    VIEW:View 1
+       CAMERA:
+          $_[1] = $_[2]
+       END
+    END
+!} elsif ($obj_type eq 'SURFACE GROUP') {
+    SURFACE GROUP: $obj_name
+       $_[1] = $_[2]
+    END
+!   }
+!}
