@@ -1,0 +1,22 @@
+!sub listParameters{
+# Action: Writes out all parameters and their values of an object (and their #             children)
+# Args: 
+#         1 (String) = Name of object
+#         2 (int, optional) = Indentation level (0 default)
+#
+!   my $obj_type = getType($_[0]);
+!   my $obj_name = getObjectName($_[0]);
+!   my $indent_level = (not defined $_[1]) ? 0 : $_[1];
+!   my @parameters = split /[,]/, getParameters($_[0]);
+!   my @children = split /[,]/, getChildren($_[0],"");
+!   print " "x(3*($indent_level)) . "$obj_type:$obj_name\n";
+!   foreach $parameter (@parameters){
+!      my $value = getParameterInfo($_[0], $parameter, "value" );
+!      print " "x(3*($indent_level+1)); print "$parameter = $value\n";
+!   }
+#  Loop through each children and print their information
+!   foreach $child (@children){
+!      listParameters( $_[0] . "/$child", $indent_level+1);
+!   }
+!   print " "x(3*($indent_level)) . "END\n";
+!}
