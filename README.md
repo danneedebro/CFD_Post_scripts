@@ -88,3 +88,7 @@ Sets a parameter in an object
 setParameters("/VIEW: Figure 1","Projection","Perspective")
 ```
 Sets the projection of Figure 1 to Perspective.
+
+
+## ```void listAllObjects()```
+Lists all objects.
