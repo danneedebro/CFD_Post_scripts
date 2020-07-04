@@ -1,7 +1,7 @@
 # CFD_Post_scripts
 Ansys CFD Post Script
 
-## ```void listParameters(Object Name,[Indent Level])```
+## ```array listParameters(Object Name,[Indent Level],[Print to screen])```
 Writes out all parameters and their values of an object (and their children) to console.
 
 ### Example
