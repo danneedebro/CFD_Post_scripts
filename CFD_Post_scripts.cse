@@ -3,22 +3,34 @@
 # Args: 
 #         1 (String) = Name of object
 #         2 (int, optional) = Indentation level (0 default)
+#         3 (boolean) = Print output to screen (default=0)
 #
+!   my $print_output = (not defined $_[2]) ? 0 : $_[2];
 !   my $obj_type = getType($_[0]);
 !   my $obj_name = getObjectName($_[0]);
 !   my $indent_level = (not defined $_[1]) ? 0 : $_[1];
 !   my @parameters = split /[,]/, getParameters($_[0]);
 !   my @children = split /[,]/, getChildren($_[0],"");
-!   print " "x(3*($indent_level)) . "$obj_type:$obj_name\n";
+!   my @outputArr = (" "x(3*($indent_level)) . "$obj_type:$obj_name");
 !   foreach $parameter (@parameters){
 !      my $value = getParameterInfo($_[0], $parameter, "value" );
-!      print " "x(3*($indent_level+1)); print "$parameter = $value\n";
+!      push(@outputArr," "x(3*($indent_level+1)) . "$parameter = $value");
 !   }
-#  Loop through each children and print their information
+#   Loop through each children and print their information
 !   foreach $child (@children){
-!      listParameters( $_[0] . "/$child", $indent_level+1);
+!      my @child_parameters = listParameters( $_[0] . "/$child", $indent_level+1);
+!      foreach $child_parameter (@child_parameters){
+!         push(@outputArr,"$child_parameter");
+!      }
 !   }
-!   print " "x(3*($indent_level)) . "END\n";
+#   Print output
+!   if ($print_output == 1){
+!      push(@outputArr," "x(3*($indent_level)) . "END");
+!      foreach $line (@outputArr){
+!         print "$line\n"
+!      }
+!   }
+!   return @outputArr;
 !}
 
 
