@@ -65,7 +65,13 @@
 !   }
 !}
 
-
+!sub listAllObjects{
+# Action: Lists all objects
+!   my @objects = split /[,]/, getChildren("/","");
+!   foreach $object (@objects){
+!      print "$object\n";
+!   }
+!}
 
 
 !sub setCamera1 {
